@@ -1,5 +1,4 @@
 name: Test Build
-
 on:
   push:
     branches: [ add-ghost-adj ]
@@ -19,7 +18,8 @@ jobs:
     - name: Setup Lean and Lake
       run: |
         curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | bash -s -- -y
-        ~/.elan/toolchains/leanprover/bin/lake --version
+        source ~/.elan/env
+        lake --version
     
     - name: Update dependencies using Lake
       run: |
