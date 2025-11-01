@@ -18,6 +18,10 @@ jobs:
     - name: Setup Lean and Lake
       run: |
         curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | bash -s -- -y
+        echo "$HOME/.elan/bin" >> $GITHUB_PATH
+    
+    - name: Verify Lake installation
+      run: |
         source ~/.elan/env
         lake --version
     
@@ -25,6 +29,11 @@ jobs:
       run: |
         source ~/.elan/env
         lake update
+    
+    - name: Generate mk_all files
+      run: |
+        source ~/.elan/env
+        lake exe mk_all
     
     - name: Build with Lake
       run: |
